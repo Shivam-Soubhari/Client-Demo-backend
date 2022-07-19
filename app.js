@@ -52,7 +52,7 @@ mongoose
     `mongodb+srv://academind:ORlnOPLKvIH9M9hP@cluster0-ntrwp.mongodb.net/mern?retryWrites=true&w=majority`
   )
   .then(() => {
-    app.listen(5000);
+    app.listen(5002);
   })
   .catch(err => {
     console.log(err);
