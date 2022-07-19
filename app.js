@@ -36,9 +36,9 @@ app.use((req, res, next) => {
 
 app.use((error, req, res, next) => {
   if (req.file) {
-    fs.unlink(req.file.path, err => {
-      console.log(err);
-    });
+    // fs.unlink(req.file.path, err => {
+    //   console.log(err, "testing done  >>>>>");
+    // });
   }
   if (res.headerSent) {
     return next(error);
@@ -46,14 +46,19 @@ app.use((error, req, res, next) => {
   res.status(error.code || 500);
   res.json({ message: error.message || 'An unknown error occurred!' });
 });
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
 
 mongoose
   .connect(
-    `mongodb+srv://academind:ORlnOPLKvIH9M9hP@cluster0-ntrwp.mongodb.net/mern?retryWrites=true&w=majority`
+    `mongodb+srv://tester1:shivam@cluster0.zz0pu.mongodb.net/?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true, }
   )
   .then(() => {
+    console.log("suceessfull")
     app.listen(5002);
   })
   .catch(err => {
+    console.log("error is there", err)
     console.log(err);
   });
